@@ -1,0 +1,9 @@
+*.bin
+*.db
+storage
+temp
+__pycache__
+files
+temp
+storage
+downloads
