@@ -98,3 +98,5 @@ python project_bundler.py --reverse \
 ---
 
 > _Pack your entire codebase into a single text file and share it with any LLM in one go!_
+
+[![Support me on PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=T4SKREGYTG5ES)
