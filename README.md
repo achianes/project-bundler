@@ -7,13 +7,15 @@
 Large language models (LLMs) often impose limits on the number of files or total upload size. By combining your entire codebase into one neatly formatted text file, you can attach it to a single LLM prompt, avoid juggling multiple uploads, and ensure the model sees the full project context in one go.
 
 ## Features
-- **Project tree snapshot**: Visualize your directory hierarchy at the top of the bundle.
-- **Full concatenation**: Recursively include every file (unless excluded), with clear headers and footers.
-- **Configurable exclusions**: Use glob patterns or exact names in `config.txt` to skip unwanted files or directories.
-- **Binary-file handling**: Automatically detect non-text files and insert the placeholder `binary file` in their place.
-- **Reverse reconstruction**: Given a bundle, faithfully recreate the original folder structure and file contents.
-- **Zero external dependencies**: Relies only on the Python standard library.
-- **Clean English comments**: Source code is documented entirely in English.
+ - **Project tree snapshot**: Visualize your directory hierarchy at the top of the bundle.
+ - **Full concatenation**: Recursively include every file (unless excluded), with clear headers and footers.
+ - **Configurable exclusions**: Use glob patterns or exact names in `config.txt` to skip unwanted files or directories.
+ - **Binary-file handling**: Automatically detect non-text files and insert the placeholder `binary file` in their place.
+ - **Reverse reconstruction**: Given a bundle, faithfully recreate the original folder structure and file contents.
+ - **Python comment stripping**: Optionally remove comments and blank lines from `.py` files for a cleaner, more compact bundle, reducing token count for LLMs.
+ - **Blank line stripping**: Optionally remove blank or whitespace-only lines from all text files, further reducing bundle size.
+ - **Zero external dependencies**: Relies only on the Python standard library.
+ - **Clean English comments**: Source code is documented entirely in English.
 
 ## Prerequisites
 - **Python 3.6+**
@@ -45,24 +47,21 @@ Read.me
 - Lines beginning with `#` are treated as comments and ignored.
 - Patterns follow Unix shell-style wildcards.
 
+
+
 ## Usage
 
 ### Bundle mode (forward)
-Generate a single text file containing the tree snapshot and all files:
+ Generate a single text file containing the tree snapshot and all files:
+ 
+ ```bash
+ python project_bundler.py --forward \
+     --root /path/to/your/project \
+     --output project_bundle.txt \
++    --config config.txt \
++    --strip-python-comments # Example: strip comments and blank lines from Python files
 
-```bash
-python project_bundler.py --forward \
-    --root /path/to/your/project \
-    --output project_bundle.txt \
-    --config config.txt
 ```
-
-- `--root, -r`  
-  Directory to scan (default: current directory).  
-- `--output, -o`  
-  Path to write the bundled text file (required).  
-- `--config, -c`  
-  Config file with exclusion patterns (default: `config.txt`).
 
 ### Reconstruct mode (reverse)
 Recreate the original directory tree and files from a bundled text file:
