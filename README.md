@@ -58,8 +58,8 @@ Read.me
  python project_bundler.py --forward \
      --root /path/to/your/project \
      --output project_bundle.txt \
-+    --config config.txt \
-+    --strip-python-comments # Example: strip comments and blank lines from Python files
+     --config config.txt \
+     --strip-python-comments # Example: strip comments and blank lines from Python files
 
 ```
 
